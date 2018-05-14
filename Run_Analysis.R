@@ -57,6 +57,7 @@ temp1 <- mutate(relevant_table,index=paste(relevant_table$subject,relevant_table
 ## and find means of all columns
 
 temp2 <- group_by(temp1[3:82],index)
-final_output <- temp2 %>% group_by(index) %>% summarise_all(mean,na.rm=TRUE)
+final_output <- temp2 %>% group_by(index) %>% summarise_all(mean,na.rm=TRUE) %>%
+   separate(index,into=c("subject","activity"),sep=" ")
 write.table(final_output,file="~/UCI HAR Dataset/final_output.txt")
 
